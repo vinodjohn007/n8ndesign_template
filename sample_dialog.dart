@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/auth_provider.dart';
-import '../models/product.dart';
-import '../database/database_helper.dart';
+
+import '../../database/database_helper.dart';
+import '../../models/product.dart';
+import '../../providers/auth_provider.dart';
+
 
 class ProductDialogScreen extends StatefulWidget {
   final Product? product;
