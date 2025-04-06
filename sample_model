@@ -1,0 +1,39 @@
+class Product {
+  final int? id;
+  final String productName;
+  final String? description;
+  final double? price;
+  final int? status;
+  final int? companyId;
+
+  Product({
+    this.id,
+    required this.productName,
+    this.description,
+    this.price,
+    this.status,
+    this.companyId,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'ProductName': productName,
+      'Description': description,
+      'Price': price,
+      'Status': status,
+      'CompanyId': companyId,
+    };
+  }
+
+  factory Product.fromMap(Map<String, dynamic> map) {
+    return Product(
+      id: map['id'],
+      productName: map['ProductName'],
+      description: map['Description'],
+      price: map['Price'],
+      status: map['Status'],
+      companyId: map['CompanyId'],
+    );
+  }
+} 
