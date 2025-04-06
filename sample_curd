@@ -1,0 +1,51 @@
+// CRUD operations for Product
+  Future<int> insertProduct(Product product) async {
+    final db = await database;
+    return await db.insert('Products', product.toMap());
+  }
+
+  Future<List<Product>> getAllProducts() async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query('Products');
+    return List.generate(maps.length, (i) => Product.fromMap(maps[i]));
+  }
+
+  Future<List<Product>> getProductsByCompanyId(int companyId) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'Products',
+      where: 'CompanyId = ?',
+      whereArgs: [companyId],
+    );
+    return List.generate(maps.length, (i) => Product.fromMap(maps[i]));
+  }
+
+  Future<Product?> getProduct(int id) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'Products',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    if (maps.isEmpty) return null;
+    return Product.fromMap(maps.first);
+  }
+
+  Future<int> updateProduct(Product product) async {
+    final db = await database;
+    return await db.update(
+      'Products',
+      product.toMap(),
+      where: 'id = ?',
+      whereArgs: [product.id],
+    );
+  }
+
+  Future<int> deleteProduct(int id) async {
+    final db = await database;
+    return await db.delete(
+      'Products',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
