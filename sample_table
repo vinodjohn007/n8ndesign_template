@@ -1,0 +1,10 @@
+ await db.execute('''
+      CREATE TABLE Products(
+        id INTEGER PRIMARY KEY,
+        ProductName TEXT NOT NULL,
+        Description TEXT,
+        Price REAL,
+        Status INTEGER,
+        CompanyId INTEGER
+      )
+    ''');
